@@ -18,10 +18,10 @@ class App extends React.Component {
                 q: term
             }
         })
-
+        console.log(JSON.stringify(response.data.items))
         this.setState({
-            videos: response.data.items,
-            selectedVideo: response.data.items[0]
+            videos: response.data.items.filter((video) => video.id.videoId),
+            selectedVideo: response.data.items.filter((video) => video.id.videoId)[0]
         })
     }
     onVideoSelect = (video) => {
@@ -30,15 +30,31 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div className="ui container">
-                <SearchBar onFormSubmit={this.onTermSubmit} />
-                {this.state.videos.length} videos.
-                <div className="ui grid">
-                    <div className="ui row">
-                        <div className="eleven wide column">
+            <div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-5 d-flex flex-row">
+                            <i style={{color:'red', fontSize:'30px'}} class="material-icons">smart_display</i>
+                            <SearchBar onFormSubmit={this.onTermSubmit} />
+                        </div>
+                        <div className="col-5 d-flex flex-row-reverse">
+                            <i style={{fontSize:'30px'}} class="material-icons">account_circle</i>
+                            <i style={{fontSize:'30px'}} class="material-icons">notifications</i>
+                            <i style={{fontSize:'30px'}} class="material-icons">chat_bubble</i>
+                            <i style={{fontSize:'30px'}} class="material-icons">apps</i>
+                            <i style={{fontSize:'30px'}} class="material-icons">videocam</i>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className='col'>
+                            {this.state.videos.length} videos.
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-9">
                             <VideoDetail video={this.state.selectedVideo} />
                         </div>
-                        <div className="five wide column">
+                        <div className="col-3">
                             <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos}/>
                         </div>
                     </div>

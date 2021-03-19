@@ -5,11 +5,11 @@ const VideoDetail = (props) => {
         const videoSrc = `https://youtube.com/embed/${props.video.id.videoId}`
         return (
             <div>
-                <div className="ui embed">
-                    <iframe title="videoPlayer" src={videoSrc} />
+                <div className="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" title="videoPlayer" src={videoSrc} />
                 </div>
-                <div className="ui segment">
-                    <h4 className="ui header">{props.video.snippet.title}</h4>
+                <div className="">
+                    <h4 className="">{props.video.snippet.title}</h4>
                     <p>{props.video.snippet.description}</p>
                 </div>
             </div>
@@ -18,7 +18,7 @@ const VideoDetail = (props) => {
     else {
         return (
             <div>
-                No Video selected
+                No Video selected, Google's Youtube Data API v3 could be down.
             </div>
         )
     }

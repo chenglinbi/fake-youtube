@@ -18,14 +18,13 @@ class SearchBar extends React.Component {
     }
     render() {
         return (
-            <div className="search-bar ui segment">
-                <form onSubmit={this.onFormSubmit} className="ui form">
-                    <div className="field">
-                        <label>Video Search</label>
-                        <input onChange={this.onInputChange} value={this.state.term} type="text" />
-                    </div>
-                </form>
-            </div>
+                        
+            <form onSubmit={this.onFormSubmit} className="input-group">
+                <input onChange={this.onInputChange} value={this.state.term} placeholder="Search" type="text" className="form-control" />
+                <div class="input-group-append">
+                    <button onClick={this.onFormSubmit} className="btn btn-outline-secondary" type="button"><i style={{fontSize:'15px'}} className="material-icons">search</i></button>
+                </div>
+            </form>
         )
     }
 }
